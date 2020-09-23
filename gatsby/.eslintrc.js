@@ -54,7 +54,6 @@ module.exports = {
     ],
     'no-console': 0,
     'import/prefer-default-export': 0,
-    import: 0,
     'func-names': 0,
     'space-before-function-paren': 0,
     'comma-dangle': 0,
@@ -70,6 +69,8 @@ module.exports = {
     'react/no-unescaped-entities': 0,
     'jsx-a11y/accessible-emoji': 0,
     'react/require-default-props': 0,
+    'react/prop-types': 0,
+    'react/jsx-props-no-spreading': 0,
     'react/jsx-filename-extension': [
       1,
       {
