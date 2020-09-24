@@ -24,7 +24,6 @@ export default {
       inputComponent: PriceInput,
       description: 'How much does it cost in cents?',
       validation: (Rule) => Rule.min(1000).max(50000),
-      // TODO: Add custom input component
     },
     {
       name: 'toppings',
