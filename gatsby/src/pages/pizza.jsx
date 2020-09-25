@@ -7,7 +7,6 @@ const PizzaPage = ({ data }) => {
   const pizzas = data.pizzas.nodes;
   return (
     <>
-      <p>Pizza Page</p>
       <PizzaList pizzas={pizzas} />
     </>
   );
