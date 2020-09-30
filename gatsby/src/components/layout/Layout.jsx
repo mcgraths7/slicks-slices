@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 import 'normalize.css';
+
 import Nav from './Nav';
 import Footer from './Footer';
 import GlobalStyles from '../../styles/GlobalStyles';
@@ -33,6 +35,9 @@ const Layout = ({ children }) => (
   <>
     <GlobalStyles />
     <Typography />
+    <Helmet htmlAttributes={{ lang: 'en' }}>
+      <meta charSet="utf-8" />
+    </Helmet>
     <StyledBorder>
       <StyledLayout>
         <Nav />

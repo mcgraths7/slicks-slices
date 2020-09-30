@@ -23,7 +23,7 @@ const StyledPagination = styled.div`
   }
 `;
 
-const Pagination = ({ pageSize, totalCount, currentPage, skip, base }) => {
+const Pagination = ({ pageSize, totalCount, currentPage, base }) => {
   const totalPages = Math.ceil(totalCount / pageSize);
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;

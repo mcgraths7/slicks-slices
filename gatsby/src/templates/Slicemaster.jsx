@@ -1,24 +1,25 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import styled from 'styled-components';
-
-const SlicemasterGrid = styled.div`
-  display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(auto - fill, minmax(400px, 1fr));
-`;
+import { Helmet } from 'react-helmet';
 
 const SingleSlicemasterPage = ({ data: { slicemaster } }) => {
   const { name, image, description } = slicemaster;
   return (
-    <SlicemasterGrid>
-      <Img fluid={image.asset.fluid} alt={name} />
-      <div>
-        <h2 className="mark">{name}</h2>
-        <p>{description}</p>
+    <>
+      <Helmet>
+        <title>{`Slick's | ${name}`}</title>
+      </Helmet>
+      <div className="center">
+        <Img fluid={image.asset.fluid} alt={name} />
+        <div>
+          <h2>
+            <span className="mark">{name}</span>
+          </h2>
+          <p>{description}</p>
+        </div>
       </div>
-    </SlicemasterGrid>
+    </>
   );
 };
 
@@ -31,7 +32,7 @@ export const query = graphql`
       description
       image {
         asset {
-          fluid(maxWidth: 800) {
+          fluid(maxWidth: 1000, maxHeight: 750) {
             ...GatsbySanityImageFluid
           }
         }

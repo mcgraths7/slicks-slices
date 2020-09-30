@@ -1,9 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledFooter = styled.footer`
+  text-align: center;
+`;
 
 const Footer = () => (
-  <footer>
+  <StyledFooter>
     <p>&copy; Slick's Slices {new Date().getFullYear()}</p>
-  </footer>
+  </StyledFooter>
 );
 
 export default Footer;

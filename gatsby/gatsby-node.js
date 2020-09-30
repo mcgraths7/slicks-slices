@@ -41,7 +41,6 @@ const turnToppingsIntoPages = async ({ graphql, actions }) => {
     }
   `);
   data.toppings.nodes.forEach((topping) => {
-    // console.log(`Creating page for ${topping.id} - ${topping.name}`);
     actions.createPage({
       path: `topping/${topping.name}`,
       component: ToppingsTemplate,
@@ -53,13 +52,13 @@ const turnToppingsIntoPages = async ({ graphql, actions }) => {
 };
 
 const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
-  // TODO
-  // 1. Query all slicemasters
-  // 2. Turn each into a page
-  // 3. figure out how many pages based on number of sm per page
-  // 4. Loop from 1-n and create pages
-  // 5. Paginate
-  const SlicemasterTemplate = path.resolve('./src/pages/slicemasters.jsx');
+  const PaginatedSlicemastersPageTemplate = path.resolve(
+    './src/pages/slicemasters.jsx'
+  );
+  const SlicemasterPageTemplate = path.resolve(
+    './src/templates/Slicemaster.jsx'
+  );
+
   const { data } = await graphql(`
     query {
       slicemasters: allSanityPerson {
@@ -76,19 +75,25 @@ const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
   `);
   const pageSize = parseInt(process.env.GATSBY_SLICEMASTERS_PER_PAGE, 10);
   const pageCount = Math.ceil(data.slicemasters.totalCount / pageSize);
-  console.log(
-    `There are ${data.slicemasters.totalCount} people across ${pageCount} pages with ${pageSize} per page`
-  );
   Array.from({ length: pageCount }).forEach((_, idx) => {
-    console.log(`Creating page ${idx + 1}`);
     actions.createPage({
       path: `slicemasters/${idx + 1}`,
-      component: SlicemasterTemplate,
+      component: PaginatedSlicemastersPageTemplate,
       context: {
         skip: idx * pageSize,
         currentPage: idx + 1,
         pageSize,
         pageCount,
+      },
+    });
+  });
+  data.slicemasters.nodes.forEach((slicemaster) => {
+    actions.createPage({
+      path: `slicemasters/${slicemaster.slug.current}`,
+      component: SlicemasterPageTemplate,
+      context: {
+        slug: slicemaster.slug.current,
+        name: slicemaster.name,
       },
     });
   });
@@ -100,11 +105,9 @@ async function fetchBeersAndTurnIntoNodes({
   createContentDigest,
 }) {
   console.log('turning 🍻 into nodes');
-  // 1. fetch a list of beers
   const ale = await fetch('https://sampleapis.com/beers/api/ale');
   const beers = await ale.json();
 
-  // 2. Loop over each one
   for (const beer of beers) {
     const nodeMeta = {
       id: createNodeId(`beer-${beer.name}`),
@@ -116,7 +119,6 @@ async function fetchBeersAndTurnIntoNodes({
         contentDigest: createContentDigest(beer),
       },
     };
-    // 3 create a node for that beer
     actions.createNode({ ...beer, ...nodeMeta });
   }
 }
@@ -126,7 +128,6 @@ export async function sourceNodes(params) {
 }
 
 export async function createPages(params) {
-  // console.log('Creating pages!');
   await Promise.all([
     turnPizzasIntoPages(params),
     turnToppingsIntoPages(params),

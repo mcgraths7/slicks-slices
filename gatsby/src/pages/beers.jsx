@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const StyledBeerGrid = styled.div`
   display: grid;
@@ -25,26 +26,31 @@ const StyledBeer = styled.div`
 `;
 
 const Beer = ({ beer }) => (
-  <StyledBeer>
-    <div>
-      <img src={beer.image} alt={beer.name} />
-    </div>
-    <div>
-      <h3>{beer.name}</h3>
-      <p>{beer.price}</p>
-      <p
-        title={`${beer.rating.average.toFixed(2)} out of 5 stars based on ${
-          beer.rating.reviews
-        } reviews`}
-      >
-        {`⭐️`.repeat(Math.round(beer.rating.average))}
-        <span style={{ filter: `grayscale(100%)` }}>
-          {`⭐️`.repeat(5 - Math.round(beer.rating.average))}
-        </span>
-        <span>({beer.rating.reviews})</span>
-      </p>
-    </div>
-  </StyledBeer>
+  <>
+    <Helmet>
+      <title>Slick's | Beers</title>
+    </Helmet>
+    <StyledBeer>
+      <div>
+        <img src={beer.image} alt={beer.name} />
+      </div>
+      <div>
+        <h3>{beer.name}</h3>
+        <p>{beer.price}</p>
+        <p
+          title={`${beer.rating.average.toFixed(2)} out of 5 stars based on ${
+            beer.rating.reviews
+          } reviews`}
+        >
+          {`⭐️`.repeat(Math.round(beer.rating.average))}
+          <span style={{ filter: `grayscale(100%)` }}>
+            {`⭐️`.repeat(5 - Math.round(beer.rating.average))}
+          </span>
+          <span>({beer.rating.reviews})</span>
+        </p>
+      </div>
+    </StyledBeer>
+  </>
 );
 
 const BeersPage = ({ data: { beers } }) => {
