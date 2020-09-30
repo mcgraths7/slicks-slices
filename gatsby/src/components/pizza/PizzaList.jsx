@@ -1,9 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
-
-import ToppingsFilter from '../ToppingsFilter';
+import styled from 'styled-components';
 
 const StyledPizzasListGrid = styled.div`
   display: grid;
@@ -26,27 +24,27 @@ const StyledPizzaGrid = styled.div`
   }
 `;
 
-const Pizza = ({ pizza }) => {
-  const { fluid } = pizza.image.asset;
-  return (
-    <StyledPizzaGrid>
-      <Link to={`/pizza/${pizza.slug.current}`}>
-        <h2>
-          <span className="mark">{pizza.name}</span>
-        </h2>
-      </Link>
-      <p>{pizza.toppings.map((topping) => topping.name).join(', ')}</p>
-      <Img fluid={fluid} alt={pizza.name} />
-    </StyledPizzaGrid>
-  );
-};
+const Pizza = ({ pizza }) => (
+  <StyledPizzaGrid>
+    <Link to={`/pizza/${pizza.slug.current}`}>
+      <h2>
+        <span className="mark">
+          {pizza.toppings.every((topping) => topping.vegetarian)
+            ? `${pizza.name} 🌱`
+            : pizza.name}
+        </span>
+      </h2>
+    </Link>
+    <p>{pizza.toppings.map((topping) => topping.name).join(', ')}</p>
+    <Img fluid={pizza.image.asset.fluid} alt={pizza.name} />
+  </StyledPizzaGrid>
+);
 
 const PizzaList = ({ pizzas }) => {
   const renderedPizzas = () =>
     pizzas.map((pizza) => <Pizza key={pizza.id} pizza={pizza} />);
   return (
     <>
-      <ToppingsFilter />
       <StyledPizzasListGrid>{renderedPizzas()}</StyledPizzasListGrid>
     </>
   );

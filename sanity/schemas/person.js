@@ -11,8 +11,8 @@ export default {
       description: 'Name of the slicer',
     },
     {
-      name: 'bio',
-      title: 'Biography',
+      name: 'description',
+      title: 'Description',
       type: 'text',
       description: 'Tell me a little bit about them',
     },

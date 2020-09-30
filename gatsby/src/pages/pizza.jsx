@@ -2,11 +2,13 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import PizzaList from '../components/pizza/PizzaList';
+import ToppingsFilter from '../components/ToppingsFilter';
 
-const PizzaPage = ({ data }) => {
+const PizzaPage = ({ data, pageContext }) => {
   const pizzas = data.pizzas.nodes;
   return (
     <>
+      <ToppingsFilter activeToppingId={pageContext.toppingId} />
       <PizzaList pizzas={pizzas} />
     </>
   );
@@ -15,8 +17,10 @@ const PizzaPage = ({ data }) => {
 export default PizzaPage;
 
 export const pageQuery = graphql`
-  query AllPizzaQuery {
-    pizzas: allSanityPizza {
+  query($toppingId: String) {
+    pizzas: allSanityPizza(
+      filter: { toppings: { elemMatch: { id: { eq: $toppingId } } } }
+    ) {
       nodes {
         name
         id
@@ -27,6 +31,7 @@ export const pageQuery = graphql`
         toppings {
           id
           name
+          vegetarian
         }
         image {
           asset {
