@@ -1,11 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+
+import SEO from '../components/SEO';
 
 const OrderPage = () => (
   <>
-    <Helmet>
-      <title>Slick's | Order Ahead</title>
-    </Helmet>
+    <SEO title="Order Ahead" description="The orders page" />
     <p>Order Ahead!</p>
   </>
 );

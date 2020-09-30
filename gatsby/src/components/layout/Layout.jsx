@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
 
 import 'normalize.css';
 
 import Nav from './Nav';
 import Footer from './Footer';
+import SEO from '../SEO';
 import GlobalStyles from '../../styles/GlobalStyles';
 import Typography from '../../styles/Typography';
 import stripes from '../../assets/images/stripes.svg';
@@ -35,9 +35,7 @@ const Layout = ({ children }) => (
   <>
     <GlobalStyles />
     <Typography />
-    <Helmet htmlAttributes={{ lang: 'en' }}>
-      <meta charSet="utf-8" />
-    </Helmet>
+    <SEO title="Slick's" description="Slick's is slingin slices since 2016" />
     <StyledBorder>
       <StyledLayout>
         <Nav />

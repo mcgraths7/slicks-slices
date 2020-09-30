@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Helmet } from 'react-helmet';
 
+import SEO from '../components/SEO';
 import PizzaList from '../components/PizzaList';
 import ToppingsFilter from '../components/ToppingsFilter';
 
@@ -9,10 +9,15 @@ const PizzaPage = ({ data, pageContext }) => {
   const pizzas = data.pizzas.nodes;
   return (
     <>
-      <Helmet>
-        <title>Slick's | Pizza</title>
-      </Helmet>
-      <ToppingsFilter activeToppingId={pageContext.toppingId} />
+      <SEO
+        title={
+          pageContext.topping
+            ? `Pizzas with ${pageContext.topping}`
+            : 'All Pizzas'
+        }
+        description="The pizzas page"
+      />
+      <ToppingsFilter activeTopping={pageContext.topping} />
       <PizzaList pizzas={pizzas} />
     </>
   );
@@ -21,9 +26,9 @@ const PizzaPage = ({ data, pageContext }) => {
 export default PizzaPage;
 
 export const pageQuery = graphql`
-  query($toppingId: String) {
+  query($topping: String) {
     pizzas: allSanityPizza(
-      filter: { toppings: { elemMatch: { id: { eq: $toppingId } } } }
+      filter: { toppings: { elemMatch: { name: { eq: $topping } } } }
     ) {
       nodes {
         name

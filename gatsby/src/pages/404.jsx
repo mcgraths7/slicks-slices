@@ -1,10 +1,14 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+
+import SEO from '../components/SEO';
 
 const NotFoundPage = () => (
-  <div>
-    <p>That page doesn't exist, idiot</p>
-  </div>
+  <>
+    <SEO title="???" description="Page not found" />
+    <div>
+      <p>That page doesn't exist, idiot</p>
+    </div>
+  </>
 );
 
 export default NotFoundPage;

@@ -1,7 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
+
+import SEO from '../components/SEO';
 
 const StyledBeerGrid = styled.div`
   display: grid;
@@ -27,9 +28,7 @@ const StyledBeer = styled.div`
 
 const Beer = ({ beer }) => (
   <>
-    <Helmet>
-      <title>Slick's | Beers</title>
-    </Helmet>
+    <SEO title="Beers" description="The beers page." />
     <StyledBeer>
       <div>
         <img src={beer.image} alt={beer.name} />

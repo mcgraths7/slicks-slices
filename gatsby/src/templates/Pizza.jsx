@@ -2,7 +2,8 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
+
+import SEO from '../components/SEO';
 
 const PizzaGrid = styled.div`
   display: grid;
@@ -14,9 +15,11 @@ const SinglePizzaPage = ({ data: { pizza } }) => {
   const { name, image, toppings } = pizza;
   return (
     <>
-      <Helmet>
-        <title>{`Slick's | ${name}`}</title>
-      </Helmet>
+      <SEO
+        title={`${name}`}
+        description={`The pizza page for ${name}.`}
+        image={image?.asset?.fluid?.src}
+      />
       <PizzaGrid>
         <Img fluid={image.asset.fluid} alt={name} />
         <div>

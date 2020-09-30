@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Helmet } from 'react-helmet';
 
+import SEO from '../components/SEO';
 import SlicemasterList from '../components/SlicemasterList';
 import Pagination from '../components/Pagination';
 
@@ -11,9 +11,10 @@ const SliceMasters = ({ data, pageContext }) => {
   const slicemasters = data.slicemasters.nodes;
   return (
     <>
-      <Helmet>
-        <title>Slick's | Slicemasters</title>
-      </Helmet>
+      <SEO
+        title={`Slicemasters - Page ${pageContext.currentPage || 1}`}
+        description="The slicemasters page."
+      />
       <Pagination
         pageSize={
           pageSize || parseInt(process.env.GATSBY_SLICEMASTERS_PER_PAGE, 10)

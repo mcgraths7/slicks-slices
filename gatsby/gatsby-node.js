@@ -45,7 +45,7 @@ const turnToppingsIntoPages = async ({ graphql, actions }) => {
       path: `topping/${topping.name}`,
       component: ToppingsTemplate,
       context: {
-        toppingId: topping.id,
+        topping: topping.name,
       },
     });
   });

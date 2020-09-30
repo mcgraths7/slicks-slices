@@ -1,15 +1,18 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import { Helmet } from 'react-helmet';
+
+import SEO from '../components/SEO';
 
 const SingleSlicemasterPage = ({ data: { slicemaster } }) => {
   const { name, image, description } = slicemaster;
   return (
     <>
-      <Helmet>
-        <title>{`Slick's | ${name}`}</title>
-      </Helmet>
+      <SEO
+        title={`${name}`}
+        description={`The slicemaster page for ${name}`}
+        image={image?.asset?.fluid?.src}
+      />
       <div className="center">
         <Img fluid={image.asset.fluid} alt={name} />
         <div>
