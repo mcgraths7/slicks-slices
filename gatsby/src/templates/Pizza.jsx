@@ -43,7 +43,7 @@ const SinglePizzaPage = ({ data: { pizza } }) => {
 
 export default SinglePizzaPage;
 
-export const query = graphql`
+export const singlePizzaQuery = graphql`
   query($slug: String!) {
     pizza: sanityPizza(slug: { current: { eq: $slug } }) {
       name

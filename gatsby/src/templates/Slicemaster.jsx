@@ -28,7 +28,7 @@ const SingleSlicemasterPage = ({ data: { slicemaster } }) => {
 
 export default SingleSlicemasterPage;
 
-export const query = graphql`
+export const singleSlicemasterQuery = graphql`
   query($slug: String!) {
     slicemaster: sanityPerson(slug: { current: { eq: $slug } }) {
       name

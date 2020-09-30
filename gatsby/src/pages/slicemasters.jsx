@@ -30,7 +30,7 @@ const SliceMasters = ({ data, pageContext }) => {
 
 export default SliceMasters;
 
-export const pageQuery = graphql`
+export const slicemastersQuery = graphql`
   query($skip: Int = 0, $pageSize: Int = 3) {
     slicemasters: allSanityPerson(skip: $skip, limit: $pageSize) {
       totalCount

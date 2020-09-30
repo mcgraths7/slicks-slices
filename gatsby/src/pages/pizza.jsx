@@ -25,7 +25,7 @@ const PizzaPage = ({ data, pageContext }) => {
 
 export default PizzaPage;
 
-export const pageQuery = graphql`
+export const pizzaQuery = graphql`
   query($topping: String) {
     pizzas: allSanityPizza(
       filter: { toppings: { elemMatch: { name: { eq: $topping } } } }
