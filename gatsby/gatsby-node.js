@@ -53,11 +53,20 @@ const turnToppingsIntoPages = async ({ graphql, actions }) => {
 };
 
 const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
-  const SlicemasterTemplate = path.resolve('./src/templates/Slicemaster.jsx');
+  // TODO
+  // 1. Query all slicemasters
+  // 2. Turn each into a page
+  // 3. figure out how many pages based on number of sm per page
+  // 4. Loop from 1-n and create pages
+  // 5. Paginate
+  const SlicemasterTemplate = path.resolve('./src/pages/slicemasters.jsx');
   const { data } = await graphql(`
     query {
       slicemasters: allSanityPerson {
+        totalCount
         nodes {
+          id
+          name
           slug {
             current
           }
@@ -65,12 +74,21 @@ const turnSlicemastersIntoPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  data.slicemasters.nodes.forEach((slicemaster) => {
+  const pageSize = parseInt(process.env.GATSBY_SLICEMASTERS_PER_PAGE, 10);
+  const pageCount = Math.ceil(data.slicemasters.totalCount / pageSize);
+  console.log(
+    `There are ${data.slicemasters.totalCount} people across ${pageCount} pages with ${pageSize} per page`
+  );
+  Array.from({ length: pageCount }).forEach((_, idx) => {
+    console.log(`Creating page ${idx + 1}`);
     actions.createPage({
-      path: `slicemasters/${slicemaster.slug.current}`,
+      path: `slicemasters/${idx + 1}`,
       component: SlicemasterTemplate,
       context: {
-        slug: slicemaster.slug.current,
+        skip: idx * pageSize,
+        currentPage: idx + 1,
+        pageSize,
+        pageCount,
       },
     });
   });

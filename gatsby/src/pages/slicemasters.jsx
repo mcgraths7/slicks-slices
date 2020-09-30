@@ -3,15 +3,17 @@ import { graphql } from 'gatsby';
 
 import SlicemasterList from '../components/SlicemasterList';
 
-const SliceMasters = ({ data: { slicemasters } }) => (
-  <SlicemasterList slicemasters={slicemasters.nodes} />
-);
+const SliceMasters = ({ data }) => {
+  console.log(data);
+  return <SlicemasterList slicemasters={data.slicemasters.nodes} />;
+};
 
 export default SliceMasters;
 
 export const pageQuery = graphql`
-  query {
-    slicemasters: allSanityPerson {
+  query($skip: Int = 0, $pageSize: Int = 3) {
+    slicemasters: allSanityPerson(skip: $skip, limit: $pageSize) {
+      totalCount
       nodes {
         id
         name

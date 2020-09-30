@@ -5,48 +5,52 @@ import styled from 'styled-components';
 
 const StyledSlicemastersListGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 4rem;
-  grid-auto-rows: auto 500px auto;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
 `;
 
 const StyledSlicemaster = styled.div`
-  position: relative;
-  h2,
-  p {
-    margin: 0;
-  }
   a {
     text-decoration: none;
   }
   h2 {
     position: relative;
+    z-index: 2;
+    font-size: 4rem;
     margin-bottom: -2rem;
-    z-index: 2;
-  }
-  p {
-    position: relative;
-    z-index: 2;
-    margin-top: -4rem;
-    padding: 1rem;
+    text-align: center;
+    transform: rotate(-2deg);
+    &:hover {
+      transform: rotate(2deg);
+    }
   }
   .gatsby-image-wrapper {
     height: 400px;
+  }
+  .description {
+    position: relative;
+    z-index: 2;
+    background: var(--yellow);
+    margin: 2rem;
+    margin-top: -6rem;
+    padding: 1rem;
+    transform: rotate(1deg);
+    text-align: center;
   }
 `;
 
 const Slicemaster = ({ slicemaster }) => (
   <StyledSlicemaster>
     <Link to={`/slicemasters/${slicemaster.slug.current}`}>
-      <h2 className="center">
+      <h2>
         <span className="mark">{slicemaster.name}</span>
       </h2>
     </Link>
 
     <Img fluid={slicemaster.image.asset.fluid} alt={slicemaster.name} />
 
-    <p className="center">
-      <span className="mark">{slicemaster.description}</span>
+    <p className="description">
+      <span>{slicemaster.description}</span>
     </p>
   </StyledSlicemaster>
 );
