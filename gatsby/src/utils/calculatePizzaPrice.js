@@ -1,7 +1,3 @@
-import formatMoney from './formatMoney';
-
-const CENTS_PER_DOLLAR = 100;
-
 const sizes = {
   S: 0.75,
   M: 1,
@@ -9,5 +5,6 @@ const sizes = {
 };
 
 export default function calculatePizzaPrice(price, size) {
-  return formatMoney((price / CENTS_PER_DOLLAR) * sizes[size]);
+  console.log(price, size);
+  return Math.round(price * sizes[size]);
 }
