@@ -11,7 +11,7 @@ export default function PizzaOrder({ order, pizzas, removeFromOrder }) {
       {order.map((singleOrder, index) => {
         const pizza = pizzas.find((p) => p.id === singleOrder.id);
         return (
-          <StyledMenuItem key={singleOrder.id}>
+          <StyledMenuItem key={`${singleOrder.id}-${index}`}>
             <Img fluid={pizza.image.asset.fluid} alt={pizza.name} />
             <h2>{`${pizza.name} - ${singleOrder.size}`}</h2>
             <p>
