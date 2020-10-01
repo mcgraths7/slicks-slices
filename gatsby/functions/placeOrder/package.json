@@ -1,0 +1,11 @@
+{
+  "name": "placeOrder",
+  "version": "1.0.0",
+  "description": "A serverless function for placing an order",
+  "main": "placeOrder.js",
+  "author": "Steven McGrath",
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.4.12"
+  }
+}
