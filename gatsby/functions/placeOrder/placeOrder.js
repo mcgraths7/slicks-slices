@@ -11,9 +11,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// TEST
-
 exports.handler = async function (event, context) {
+  // TODO
+  // validate data coming in
+  // send email
+  // send success/error message
+  const requiredFields = ['email', 'name', 'order'];
+  for (const field of requiredFields) {
+    console.log(`Checking that field ${field} is good`);
+  }
+  console.log(JSON.parse(event.body));
   const email = await transporter.sendMail({
     from: "Slick's Slices <slick@example.com>",
     to: 'orders@example.com',
@@ -22,6 +29,6 @@ exports.handler = async function (event, context) {
   });
   return {
     statusCode: 200,
-    body: JSON.stringify(email, undefined, 2),
+    body: JSON.stringify(email),
   };
 };
