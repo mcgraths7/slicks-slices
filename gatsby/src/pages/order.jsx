@@ -85,8 +85,7 @@ const OrderPage = ({ data }) => {
         </fieldset>
         <fieldset>
           <h3>
-            Your total is:{' '}
-            {formatMoney(calculateOrderTotal(order, pizzas)) || '$0.00'}
+            Your total is: {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
           <button type="submit">Place Order</button>
         </fieldset>
