@@ -1,7 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
-import StyledMenuItem from '../styles/MenuItemStyles';
 
+import StyledMenuItem from '../styles/MenuItemStyles';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
 

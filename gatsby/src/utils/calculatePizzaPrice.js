@@ -5,6 +5,5 @@ const sizes = {
 };
 
 export default function calculatePizzaPrice(price, size) {
-  console.log(price, size);
   return Math.round(price * sizes[size]);
 }
