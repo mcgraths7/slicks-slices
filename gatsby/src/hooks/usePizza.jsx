@@ -33,6 +33,7 @@ export default function usePizza({ pizzas, values }) {
       email: values.email,
       order: attachNamesAndPricesToOrder(order, pizzas),
       orderTotal: formatMoney(calculateOrderTotal(order, pizzas)),
+      mapleSyrup: values.mapleSyrup,
     };
     const response = await fetch(
       `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
@@ -44,7 +45,6 @@ export default function usePizza({ pizzas, values }) {
         body: JSON.stringify(body),
       }
     );
-    console.log(body);
     const t = await response.text();
     const text = JSON.parse(t);
 
@@ -52,10 +52,10 @@ export default function usePizza({ pizzas, values }) {
     // 2 if response.status >= 400 && response.status <= 600 BAD
     if (response.status >= 400 && response.status <= 600) {
       setLoading(false);
-      setMessage(text.message);
+      setError(text.error);
     } else {
       setLoading(false);
-      setMessage('Success! Your pizza will be ready in 15-20 minutes!');
+      setMessage(text.message);
     }
   }
   // TODO:
