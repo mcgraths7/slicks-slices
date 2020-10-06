@@ -49,7 +49,7 @@ const useLatestData = () => {
         setHotSlices(response.data.StoreSettings.hotSlices);
       })
       .catch((err) => {
-        console.log(err);
+        throw new Error(err);
       });
   }, []);
   return {

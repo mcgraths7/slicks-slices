@@ -38,6 +38,7 @@ const Pagination = ({ pageSize, totalCount, currentPage, base }) => {
         <Link
           className={currentPage === 1 && idx === 0 ? 'current' : ''}
           to={`${base}/${idx > 0 ? idx + 1 : ''}`}
+          key={`page-${idx}`}
         >
           {idx + 1}
         </Link>

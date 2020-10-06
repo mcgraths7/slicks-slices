@@ -42,7 +42,6 @@ function HotSlices({ hotSlices }) {
 
 const HomePage = () => {
   const { slicemasters, hotSlices } = useLatestData();
-  console.log(slicemasters, hotSlices);
   return (
     <>
       <SEO title="Home" description="The index page." />
