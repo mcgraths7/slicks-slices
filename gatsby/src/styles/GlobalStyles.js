@@ -42,10 +42,14 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  .gatsby-image-wrapper img[src*=base64\\,] {
+  .gatsby-image-wrapper {
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
   }
+  /* img[src*=base64\\,] {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
+  } */
 
   /* Scrollbar Styles */
   body::-webkit-scrollbar {
@@ -76,9 +80,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .tilt {
-    transform: rotate(-2deg);
     position: relative;
     display: inline-block;
+    transform: rotate(-2deg);
   }
 
 `;
