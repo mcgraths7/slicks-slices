@@ -57,6 +57,25 @@ const StyledNav = styled.nav`
       color: var(--red);
     }
   }
+  @media (max-width: 768px) {
+    --cols: 4;
+    margin-bottom: 2rem;
+    ul {
+      grid-template-rows: auto auto;
+      grid-template-columns: repeat(var(--cols), 1fr);
+      justify-items: center;
+      height: auto;
+    }
+    .logo-item {
+      order: 0;
+      grid-column: 1 / -1;
+      transform: translateY(20%);
+    }
+  }
+  @media (max-width: 440px) {
+    --cols: 2;
+    font-size: 1.2rem;
+  }
 `;
 
 const Nav = () => (
@@ -68,7 +87,7 @@ const Nav = () => (
       <li>
         <Link to="/pizza">Pizza</Link>
       </li>
-      <li>
+      <li className="logo-item">
         <Link to="/">
           <Logo />
         </Link>

@@ -6,8 +6,6 @@ import calculateOrderTotal from '../utils/calculateOrderTotal';
 import formatMoney from '../utils/formatMoney';
 
 export default function usePizza({ pizzas, values }) {
-  // const [order, setOrder] = useState([]);
-  // Replacing useState with useContext
   const [order, setOrder] = useContext(OrderContext);
   const [error, setError] = useState();
   const [loading, setLoading] = useState();

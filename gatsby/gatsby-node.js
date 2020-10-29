@@ -17,7 +17,6 @@ const turnPizzasIntoPages = async ({ graphql, actions }) => {
     }
   `);
   data.pizzas.nodes.forEach((pizza) => {
-    // console.log('Creating pizza page for ', pizza.name);
     actions.createPage({
       path: `pizza/${pizza.slug.current}`,
       component: PizzaTemplate,
@@ -104,7 +103,6 @@ async function fetchBeersAndTurnIntoNodes({
   createNodeId,
   createContentDigest,
 }) {
-  console.log('turning 🍻 into nodes');
   const ale = await fetch('https://sampleapis.com/beers/api/ale');
   const beers = await ale.json();
 

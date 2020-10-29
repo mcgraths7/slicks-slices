@@ -11,7 +11,7 @@ function CurrentlySlicing({ slicemasters }) {
   return (
     <div>
       <h2 className="center">
-        <span className="mark tilt">Slicemasters currently slicing</span>
+        <span className="mark tilt">Slicemasters On</span>
       </h2>
       <p>Standing by ready to slice you up!</p>
 
